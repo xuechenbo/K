@@ -1,0 +1,5 @@
+service 前台服务，后台服务
+startService  bindService
+IntentService 是Service的子类，用于处理后台异步请求任务。  当任务执行完后，IntentService会自动停止   在android11弃用
+
+startForeground()  前台服务  8.0新规
