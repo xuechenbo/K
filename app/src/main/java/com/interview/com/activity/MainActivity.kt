@@ -7,24 +7,26 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.interview.com.IMyAidlInterface
-import com.interview.com.R
 import com.interview.com.databinding.ActivityMainBinding
 import com.interview.com.serview.AAservice
 import com.interview.com.serview.AidlServiced
 import com.interview.com.serview.MusicPlayerService
+import com.interview.com.vm.LoginViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private var mBinder: AAservice.MyBinder? = null
     private var mIMyAidlInterface: IMyAidlInterface? = null
     private lateinit var binding: ActivityMainBinding
+    private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         initBindService()
     }
 
@@ -46,6 +48,15 @@ class MainActivity : AppCompatActivity() {
                 mIMyAidlInterface?.start(1)
                 mIMyAidlInterface?.getNum(2, 4)
             }
+        }
+
+        loginViewModel.run {
+            tag.observeForever {
+
+            }
+//            tag.observe(this@MainActivity){
+//                // ......
+//            }
         }
     }
 
