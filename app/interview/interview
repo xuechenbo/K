@@ -1,0 +1,23 @@
+一，handler
+1,子线程到主线程通信又那些方式？子线程主线程通信原理?
+handler  eventBus 广播
+原理，利用的线程间内存共享机制
+2,handler内存泄露原因    GC机制   生命周期短的引用了长的 匿名内部类  handler持有外部类对象
+GCroot直接或间接对象都不能被回收  （这个就是）static sThreadLocal--->Looper--->messageQueue---->message-->handler---->activiy
+解决: 1 static Handler    打断handler 持有activty  原因:静态匿名内部类不会持有外部对象
+     2  removeMessage  打断messagequeue 持有message
+3,MessageQueue中存储得Message数量有上限吗？为什么这么设计，能不能用阻塞队列做MessageQueue？
+没有上限  反射的main函数 有一个死循环  handler---生产者--消费者模式   不能 因为处理的消息达到了上限，但是handler恰恰没有上限
+4,Handler如何处理发送延迟消息？
+5,我们使用Message时，应该如何创建它？
+6,handler没有消息处理是阻塞得还是非阻塞的？为什么不会有ANR产生？
+
+二，IPC Binder
+
+三，WMS AMS  APP启动流程
+
+四，MVP,MVC,MVVM  JETPACK
+
+五，三方框架
+
+六，http，retrofit，Rxjava
