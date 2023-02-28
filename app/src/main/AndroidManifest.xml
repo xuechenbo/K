@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <queries>
+        <!--如果想要与其他的应用进行AIDL通信的话，需要在这里注册包名的信息-->
+        <!--谷歌的文档说明 https://developer.android.google.cn/guide/topics/manifest/queries-element?hl=en-->
+        <package android:name="com.interview.com" />
+    </queries>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,11 +31,22 @@
             android:process=":remote111"
             ></service>
         <service android:name=".serview.MusicPlayerService" />
+
+
         <service
             android:name=".serview.AidlServiced"
             android:enabled="true"
             android:exported="true"
             android:process=":remote"></service>
+
+        <service android:name=".serview.CalcPlusService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.interview.com.calcplus"></action>
+                <action android:name="android.intent.category.DEFAULT"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

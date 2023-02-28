@@ -3,3 +3,10 @@ startService  bindService
 IntentService 是Service的子类，用于处理后台异步请求任务。  当任务执行完后，IntentService会自动停止   在android11弃用
 
 startForeground()  前台服务  8.0新规
+
+//AIDL  Binder Messenger
+https://blog.csdn.net/yang553566463/article/details/125191268
+
+如果我们无需跨进程实现绑定服务和同一进程组件之间的通信，则使用 Binder 类即可      普通bindService  获取service的实例
+如果我们需要跨进程实现绑定服务和其他进程组件之间的通信，且不需要进行多线程处理时，则使用 Messenger
+如果我们需要跨进程实现绑定服务和其他进程组件之间的通信，且需要进行多线程处理，则使用 AIDL
