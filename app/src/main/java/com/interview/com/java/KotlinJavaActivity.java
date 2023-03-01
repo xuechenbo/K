@@ -2,7 +2,10 @@ package com.interview.com.java;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,9 +23,11 @@ class KotlinJavaActivity extends AppCompatActivity {
 
 
     class aaa{
+
         public aaa() {
         }
         public aaa(String a) {
         }
     }
+
 }

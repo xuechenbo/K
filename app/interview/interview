@@ -1,4 +1,11 @@
 一，handler
+MessageQueue，Handler 和 Looper 三者之间的关系：每个线程中只能存在一个
+Looper，Looper 是保存在 ThreadLocal 中的。主线程（UI 线程）已经创建了一
+个 Looper，所以在主线程中不需要再创建 Looper，但是在其他线程中需要创建
+Looper。每个线程中可以有多个 Handler，即一个 Looper 可以处理来自多个
+Handler 的消息。 Looper 中维护一个 MessageQueue，来维护消息队列，消息队
+列中的 Message 可以来自不同的 Handler。
+
 1,子线程到主线程通信又那些方式？子线程主线程通信原理?
 handler  eventBus 广播
 原理，利用的线程间内存共享机制
@@ -21,3 +28,38 @@ GCroot直接或间接对象都不能被回收  （这个就是）static sThreadL
 五，三方框架
 
 六，http，retrofit，Rxjava
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
