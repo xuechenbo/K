@@ -5,6 +5,21 @@ Looper，Looper 是保存在 ThreadLocal 中的。主线程（UI 线程）已经
 Looper。每个线程中可以有多个 Handler，即一个 Looper 可以处理来自多个
 Handler 的消息。 Looper 中维护一个 MessageQueue，来维护消息队列，消息队
 列中的 Message 可以来自不同的 Handler。
+Thread.foo()
+    Looper.loop()
+        -> MessageQueue.next()
+            -> Message.target.dispatchMessage()
+                -> Handler.handleMessage()
+    1. Handler 的 背 后 有 Looper 、 MessageQueue 支 撑 ， Looper 负 责 消 息 分 发 ，
+    MessageQueue 负责消息管理；
+    2. 在创建 Handler 之前一定需要先创建 Looper；
+    3. Looper 有退出的功能，但是主线程的 Looper 不允许退出；
+    4. 异步线程的 Looper 需要自己调用 Looper.myLooper().quit(); 退出；
+    5. Runnable 被封装进了 Message，可以说是一个特殊的 Message；
+    6. Handler.handleMessage() 所在的线程是 Looper.loop() 方法被调用的线程，也可
+    以说成 Looper 所在的线程，并不是创建 Handler 的线程；
+    7. 使用内部类的方式使用 Handler 可能会导致内存泄露，即便在 Activity.onDestroy
+    里移除延时消息，必须要写成静态内部类；
 
 1,子线程到主线程通信又那些方式？子线程主线程通信原理?
 handler  eventBus 广播
@@ -18,6 +33,13 @@ GCroot直接或间接对象都不能被回收  （这个就是）static sThreadL
 4,Handler如何处理发送延迟消息？
 5,我们使用Message时，应该如何创建它？
 6,handler没有消息处理是阻塞得还是非阻塞的？为什么不会有ANR产生？
+7,为什么主线程不会因为Looper.loop()里的死循环卡死或者不能处理其他事务
+主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。
+答案是通过创建新线程的方式。
+我们看到main方法里调用了thread.attach(false)，这里便会创建一个Binder线程（具体是指ApplicationThread，Binder的服务端，用于接收系统服务AMS发送来的事件），该Binder线程通过Handler将Message发送给主线程。
+ActivityThread对应的Handler是一个内部类H，里边包含了启动Activity、处理Activity生命周期等方法。
+
+
 
 二，IPC Binder
 
