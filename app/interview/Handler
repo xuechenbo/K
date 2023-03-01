@@ -41,18 +41,6 @@ ActivityThread对应的Handler是一个内部类H，里边包含了启动Activit
 
 
 
-二，IPC Binder
-
-三，WMS AMS  APP启动流程
-
-四，MVP,MVC,MVVM  JETPACK
-
-五，三方框架
-
-六，http，retrofit，Rxjava
-
-
-
 
 
 

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.interview.com'
+    namespace 'com.Handler.com'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.interview.com"
+        applicationId "com.Handler.com"
         minSdk 24
         targetSdk 31
         versionCode 1

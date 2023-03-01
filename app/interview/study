@@ -1,0 +1,30 @@
+java基础
+
+android基础
+自定义View的绘制流程  事件分发机制
+
+kotlin知识  **********
+
+一，handler
+
+二，IPC Binder
+
+三，WMS AMS  APP启动流程
+
+四，MVP,MVC,MVVM  JETPACK
+
+五，三方框架，各种优化
+recyclerView缓存 Glid
+
+六，http，retrofit，Rxjava
+
+七，热更新
+
+八，组件化，插件化，路由
+
+九，jni  sdk开发
+
+十，设计模式
+
+十一，做一个项目
+
