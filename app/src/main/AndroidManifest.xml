@@ -18,12 +18,16 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.interview.com.activity.MainActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".activity.HandlerActivity"
+            android:name="com.interview.com.activity.HandlerActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name="com.interview.com.java.KotlinJavaActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,20 +36,21 @@
             </intent-filter>
         </activity>
 
+
         <service
-            android:name=".serview.AAservice"
+            android:name="com.interview.com.serview.AAservice"
             android:process=":remote111"></service>
-        <service android:name=".serview.MusicPlayerService" />
+        <service android:name="com.interview.com.serview.MusicPlayerService" />
 
 
         <service
-            android:name=".serview.AidlServiced"
+            android:name="com.interview.com.serview.AidlServiced"
             android:enabled="true"
             android:exported="true"
             android:process=":remote"></service>
 
         <service
-            android:name=".serview.CalcPlusService"
+            android:name="com.interview.com.serview.CalcPlusService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
