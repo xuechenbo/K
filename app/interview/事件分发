@@ -1,0 +1,22 @@
+onInterceptorEvent 顺序 根右左       true 拦截  false 不拦截
+ViewGroup 独有
+
+
+dispatchTouchEvent
+View 和ViewGroup都有
+View 只会把事件分发到TouchEvent中  看自己怎么处理
+ViewGroup  分发给child
+
+
+onTouchEvent   默认返回false
+true  View响应了事件
+
+down的分发
+
+
+move的分发
+
+
+
+up的分发
+
