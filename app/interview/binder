@@ -1,0 +1,39 @@
+zygote  本质用于fork app    ipc是socket   一次fork两个进程
+app一个独立的进程，一个app可以有多个进程  app有几个虚拟机  一个进程对应一个虚拟机
+虚拟机 本质内存管理工具
+为啥在zygote中初始化虚拟机 ？   因为 : zygote  本质用于fork app  一个进程对应一个虚拟机
+
+ndk jni为 java调用底层的通道  翻译语言   jni在zygote初始化 注册android常用的底层函数
+
+jni调用java ---用反射
+
+app启动流程优化？
+zygote 怎么优化？-----zygote所有加载都在主线程， 删除一些不必要的服务，并发加载，拓扑排序，子线程并发 同步加载资源
+
+AMS
+C / S   AMS---zygote
+
+SystemSevice 进程  给app提供服务的服务器    ice
+SystemService------->
+AMS WMS 那些都是他的子类 代表的是系统服务，都是extends SystemServ  提供90多个系统服务   本质也是实现的AIDL
+SystemServiceManager------>  协助systemService 进程管理90+的SystemService
+AMS 管理四大组件的SystemService   给app使用  如何给app使用呢？IPC机制，binder机制 跨进程通信
+app：提供一个服务进程给别的app调用，:AIDL
+ServiceManager 是干什么用的？
+add AMS WMS 等的binder的管理
+比如：AMS 是用AIDL实现的，没有实现SystemService，所有怎么让一个类有两个父类？
+
+
+
+AMS WMS 给app调用
+
+
+如何让一个类有两个父类？
+静态类 实现 一个父类
+然后在静态类里面定义 final 要实现的类。
+class static licycle extend SystemService{
+    final static AMS ams;
+    start(
+       add到Servicemanager(binder)
+    )
+}
