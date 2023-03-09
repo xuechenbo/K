@@ -1,22 +1,55 @@
 onInterceptorEvent 顺序 根右左       true 拦截  false 不拦截
-ViewGroup 独有
 
-
-dispatchTouchEvent
-View 和ViewGroup都有
 View 只会把事件分发到TouchEvent中  看自己怎么处理
-ViewGroup  分发给child
+分发到了View
+1、如果View设置了setOnTouchListener并且onTouch方法返回true，那么onTouchEvent就不会被执行。
+2、否则，执行onTouchEvent方法。
+
+分发
+onDispatchTouchEvent   ViewGroup View
+拦截
+onInterceptorEvent     ViewGroup
+消费
+onTouchEvent           ViewGroup View             默认返回false 不消费    true 响应了事件
 
 
-onTouchEvent   默认返回false
-true  View响应了事件
-
-down的分发
-
-
-move的分发
+执行顺序
+onTouchListener(Touch方法) > onTouchEvent > onLongClickListener > onClickListener
+3. ViewGroup 和 ChildView 同时注册了事件监听器(onClick等)，哪个会执行?
+事件优先给 ChildView，会被 ChildView消费掉，ViewGroup 不会响应。
 
 
+ViewGroup 要比它的 ChildView 先拿到事件，并且有权决定是否告诉要告诉 ChildView。在默认的情况下 ViewGroup 事件分发流程是这样的。
+1.判断自身是否需要(询问 onInterceptTouchEvent 是否拦截)，如果需要，调用自己的 onTouchEvent。
+2.自身不需要或者不确定，则询问 ChildView ，一般来说是调用手指触摸位置的 ChildView。
+3.如果子 ChildView 不需要则调用自身的 onTouchEvent。
 
-up的分发
+public boolean dispatchTouchEvent(MotionEvent ev) {
+    boolean result = false;             // 默认状态为没有消费过
 
+    if (!onInterceptTouchEvent(ev)) {   // 如果没有拦截交给子View
+        result = child.dispatchTouchEvent(ev);
+    }
+
+    if (!result) {                      // 如果事件没有被消费,询问自身onTouchEvent
+        result = onTouchEvent(ev);
+    }
+
+    return result;
+}
+
+安卓为了保证所有的事件都是被一个 View 消费的，对第一次的事件( ACTION_DOWN )进行了特殊判断，View 只有消费了 ACTION_DOWN 事件，
+才能接收到后续的事件(可点击控件会默认消费所有事件)，并且会将后续所有事件传递过来，不会再传递给其他 View，除非上层 View 进行了拦截。
+如果上层 View 拦截了当前正在处理的事件，会收到一个 ACTION_CANCEL，表示当前事件已经结束，后续事件不会再传递过来。
+
+核心要点
+事件分发原理: 责任链模式，事件层层传递，直到被消费。
+View 的 dispatchTouchEvent 主要用于调度自身的监听器和 onTouchEvent。
+View的事件的调度顺序是 onTouchListener > onTouchEvent > onLongClickListener > onClickListener 。
+不论 View 自身是否注册点击事件，只要 View 是可点击的就会消费事件。
+事件是否被消费由返回值决定，true 表示消费，false 表示不消费，与是否使用了事件无关。
+ViewGroup 中可能有多个 ChildView 时，将事件分配给包含点击位置的 ChildView。
+ViewGroup 和 ChildView 同时注册了事件监听器(onClick等)，由 ChildView 消费。
+一次触摸流程中产生事件应被同一 View 消费，全部接收或者全部拒绝。
+只要接受 ACTION_DOWN 就意味着接受所有的事件，拒绝 ACTION_DOWN 则不会收到后续内容。
+如果当前正在处理的事件被上层 View 拦截，会收到一个 ACTION_CANCEL，后续事件不会再传递过来。

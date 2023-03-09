@@ -9,14 +9,13 @@ import android.os.IBinder
 import android.os.Parcel
 import android.os.RemoteException
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.Handler.com.databinding.ActivityMainBinding
 import com.interview.com.IMyAidlInterface
 import com.interview.com.serview.AAservice
-import com.interview.com.serview.AidlServiced
+import com.interview.com.aidl.AidlServiced
 import com.interview.com.serview.MusicPlayerService
 import com.interview.com.vm.LoginViewModel
 
@@ -27,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mPlusBinde: IBinder
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var AA: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

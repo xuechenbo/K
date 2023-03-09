@@ -1,4 +1,4 @@
-package com.interview.com.serview;
+package com.interview.com.aidl;
 
 import android.os.RemoteException;
 import android.util.Log;

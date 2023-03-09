@@ -1,22 +1,26 @@
 package com.interview.com.java;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.interview.com.R;
-import com.interview.com.serview.AAservice;
+class KotlinJavaActivity  extends AppCompatActivity {
+    private Button butn;
+    private void click(){
+        butn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-class KotlinJavaActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+            }
+        });
+        butn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return false;
+            }
+        });
 
     }
 }

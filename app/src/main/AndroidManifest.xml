@@ -17,17 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <!--Activity-->
         <activity
             android:name="com.interview.com.activity.MainActivity"
             android:exported="true">
+
         </activity>
 
         <activity
             android:name="com.interview.com.activity.HandlerActivity"
-            android:exported="true">
-
-        </activity>
-        <activity android:name="com.interview.com.java.KotlinJavaActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name="com.interview.com.activity.ViewTouchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,15 +37,15 @@
             </intent-filter>
         </activity>
 
+        <!--Servie-->
 
         <service
             android:name="com.interview.com.serview.AAservice"
             android:process=":remote111"></service>
         <service android:name="com.interview.com.serview.MusicPlayerService" />
 
-
         <service
-            android:name="com.interview.com.serview.AidlServiced"
+            android:name="com.interview.com.aidl.AidlServiced"
             android:enabled="true"
             android:exported="true"
             android:process=":remote"></service>

@@ -1,4 +1,4 @@
-package com.interview.com.serview;
+package com.interview.com.aidl;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.interview.com.aidl.AidlImp;
 
 
 public class AidlServiced extends Service {
