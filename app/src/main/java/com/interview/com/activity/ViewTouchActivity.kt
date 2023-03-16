@@ -40,7 +40,6 @@ class ViewTouchActivity : AppCompatActivity() {
 //            view1.setOnClickListener {
 //                Log.e(TAG, "view1---setOnClickListener")
 //            }
-
         }
     }
 

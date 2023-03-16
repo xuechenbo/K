@@ -1,15 +1,16 @@
-java基础  反射
+java基础  反射  锁
 
 android基础
+
 自定义View的绘制流程  事件分发机制
 
-kotlin知识  **********
+kotlin知识  **********    高阶函数,协程,语法糖
 
 一，handler  *****
 
 二，IPC Binder   ****
 
-三，WMS AMS  APP启动流程    3.10 了解AMS WMS 启动流程
+三，WMS AMS  APP启动流程
 
 四，MVP,MVC,MVVM  JETPACK
 
@@ -29,6 +30,13 @@ recyclerView缓存 Glid
 十一，做一个项目
 
 十二，java虚拟机 JVM    虚拟机 用c++写的
+
+
+3.10 AOP  ASM  字节码插装
+
+
+AOP 面向切面编程
+OOP 面向对象编程
 
 
 

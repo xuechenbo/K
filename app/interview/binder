@@ -13,6 +13,8 @@ zygote 怎么优化？-----zygote所有加载都在主线程， 删除一些不�
 AMS
 C / S   AMS---zygote
 
+zygote fork SystemService
+
 SystemSevice 进程  给app提供服务的服务器    ice
 SystemService------->
 AMS WMS 那些都是他的子类 代表的是系统服务，都是extends SystemServ  提供90多个系统服务   本质也是实现的AIDL
