@@ -14,6 +14,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import kotlin.coroutines.cancellation.CancellationException
 
+//别名
 typealias Block<T> = suspend (CoroutineScope) -> T
 typealias Error = suspend (Exception) -> Unit
 typealias Cancel = suspend (Exception) -> Unit
@@ -22,6 +23,10 @@ typealias Complete = suspend () -> Unit
 open class BaseViewModel : ViewModel() {
     val errorLiveData = MutableLiveData<Throwable>()
     val loadingLiveData = MutableLiveData<Boolean>()
+
+    fun abc(block: Block<Unit>, error: Error?) {
+
+    }
 
     /**
      * 创建并执行协程

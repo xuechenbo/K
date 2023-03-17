@@ -17,3 +17,7 @@ data class Repo(
     @SerializedName("forks_count") val forks: Int,
     @SerializedName("language") val language: String?
 )
+
+data class Person(
+    val age: Int, val name: String
+)

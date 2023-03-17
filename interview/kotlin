@@ -1,0 +1,48 @@
+基础
+语法糖
+协程
+高阶函数
+
+async 阿shen可
+coroutine kaoruoti
+scope 斯kaopu
+
+
+coroutine
+Flow 继续看
+flow emit collect
+调用顺序
+flow-->collect-->flow闭包-->emit-->collect闭包
+
+函数类型，高阶函数，Lambda 3.17
+
+ASM  函数式接口 只有一个抽象方法的类或者接口
+
+高阶函数---> 参数是函数类型或者返回值是函数类型
+
+函数类型eg：
+fun add(){}   函数类型为  () -> Unit
+fun add(a:Int,b:String){}  函数类型为  (Int,String) ->Unit
+fun add(a:Int,b:String):String{}  函数类型为  (Int,String) ->String
+
+//一个高阶函数
+fun test(abc:(Int,String) -> String,aab:Int,aac:String){
+
+}
+本质上 定义一个函数类型的变量   指向一个符合的函数
+val a:(Int,String)->String=::bb
+fun bb(a:Int,b:String):String{
+
+}
+//调用
+test(a,1,"")
+
+
+
+Lambda
+1,当 Lambda 参数是函数的最后一个参数时，可以将 Lambda 表达式移到函数括号的外面
+2,如果 Lambda 表达式是函数的唯一一个参数的话，还可以将函数的括号省略
+3,Lambda 表达式如果只有一个参数，可以直接用 it 来代替，并且不需要声明参数名
+
+内联函数 每次调用，会把函数全部复制到调用位置
+inline
