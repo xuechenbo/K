@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 data class KotlinModel(
     var mBitmap: Bitmap,
     var request: Int,
-    val topHeight: MutableLiveData<Int> = MutableLiveData(),
+    val topHeight: MutableLiveData<Int> = MutableLiveData()
 ) {
     init {
         request = 1231

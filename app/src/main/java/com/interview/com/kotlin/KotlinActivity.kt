@@ -2,7 +2,7 @@ package com.interview.com.kotlin
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.Handler.com.databinding.ActivityKotlinBinding
+import com.interview.com.databinding.ActivityKotlinBinding
 
 class KotlinActivity : AppCompatActivity() {
     private lateinit var binding: ActivityKotlinBinding

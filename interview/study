@@ -23,7 +23,10 @@ recyclerView缓存 Glid
 
 八，组件化，插件化，路由
 
-九，jni  sdk开发
+九，jni  sdk开发    ndk
+jni  java 调用c/c++的方法     java和native的通道
+静态注册，动态注册
+ndk  写c/c++的工具包  native层
 
 十，设计模式
 
@@ -32,7 +35,7 @@ recyclerView缓存 Glid
 十二，java虚拟机 JVM    虚拟机 用c++写的
 
 
-3.10 AOP  ASM  字节码插装
+3.10 AOP  ASM  字节码插装  抓包
 
 
 AOP 面向切面编程

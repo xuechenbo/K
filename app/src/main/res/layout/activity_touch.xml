@@ -5,17 +5,33 @@
     android:orientation="vertical">
 
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#D5E38C" />
+    <com.interview.com.view.NoScrollViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/view1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#E6B8B8" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#D5E38C" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#E6B8B8" />
+        </LinearLayout>
+
+    </com.interview.com.view.NoScrollViewPager>
 
 
 </FrameLayout>

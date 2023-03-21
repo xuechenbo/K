@@ -11,7 +11,7 @@ app启动流程优化？
 zygote 怎么优化？-----zygote所有加载都在主线程， 删除一些不必要的服务，并发加载，拓扑排序，子线程并发 同步加载资源
 
 AMS
-C / S   AMS---zygote
+C / S   AMS---zygote    socket 通讯
 
 zygote fork SystemService
 

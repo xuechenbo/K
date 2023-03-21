@@ -12,7 +12,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.Handler.com.databinding.ActivityMainBinding
+import com.interview.com.databinding.ActivityMainBinding
 import com.interview.com.IMyAidlInterface
 import com.interview.com.serview.AAservice
 import com.interview.com.aidl.AidlServiced

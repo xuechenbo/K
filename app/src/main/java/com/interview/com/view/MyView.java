@@ -24,4 +24,6 @@ public class MyView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         return super.onTouchEvent(event);
     }
+
+    
 }

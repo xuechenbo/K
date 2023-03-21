@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.xc.common_base'
+    compileSdk rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        flavorDimensions "versionCode"
+
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    /**
+     * api 和 implementation
+     * api:
+     * Gradle 会将依赖项添加到编译类路径和构建输出。当一个模块包含 api 依赖项时，
+     * 会让 Gradle 了解该模块要以传递方式将该依赖项导出到其他模块，以便这些模块在运行时和编译时都可以使用该依赖项。
+     *  api类似一个继承的关系，可以访问
+     *
+     *  A implementation B
+     *  B api C
+     *  A可以访问B和c    B可以访问C
+     *
+     * A implementation B
+     * B implementation C
+     *  A只可以访问到B  B可以访问C
+     *
+     * */
+
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api rootProject.ext.dependencies["material"]
+    api rootProject.ext.dependencies["appcompat"]
+    api rootProject.ext.dependencies["core_ktx"]
+    testImplementation rootProject.ext.dependencies["junit"]
+}

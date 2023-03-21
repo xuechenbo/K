@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import androidx.appcompat.app.AppCompatActivity
-import com.Handler.com.databinding.ActivityHandlerBinding
+import com.interview.com.databinding.ActivityHandlerBinding
 
 class HandlerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHandlerBinding

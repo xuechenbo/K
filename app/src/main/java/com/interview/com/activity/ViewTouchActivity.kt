@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.Handler.com.databinding.ActivityTouchBinding
+import com.interview.com.databinding.ActivityTouchBinding
 
 class ViewTouchActivity : AppCompatActivity() {
     private val TAG: String = "viewTouch"
@@ -43,7 +43,7 @@ class ViewTouchActivity : AppCompatActivity() {
         }
     }
 
-    fun aaa1(v: View){
+    fun aaa1(v: View) {
         Log.e(TAG, "aaa1")
     }
 
@@ -51,11 +51,11 @@ class ViewTouchActivity : AppCompatActivity() {
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         Log.e(TAG, "Activity----dispatchTouchEvent")
         return super.dispatchTouchEvent(ev)
+//        return false
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         Log.e(TAG, "Activity----onTouchEvent")
         return true
-
     }
 }

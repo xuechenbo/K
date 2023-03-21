@@ -6,11 +6,11 @@ View 只会把事件分发到TouchEvent中  看自己怎么处理
 2、否则，执行onTouchEvent方法。
 
 分发
-onDispatchTouchEvent   ViewGroup View
+onDispatchTouchEvent   ViewGroup    View
 拦截
 onInterceptorEvent     ViewGroup
 消费
-onTouchEvent           ViewGroup View             默认返回false 不消费    true 响应了事件
+onTouchEvent           ViewGroup    View             默认返回false 不消费    true 响应了事件
 
 
 执行顺序
@@ -53,3 +53,6 @@ ViewGroup 和 ChildView 同时注册了事件监听器(onClick等)，由 ChildVi
 一次触摸流程中产生事件应被同一 View 消费，全部接收或者全部拒绝。
 只要接受 ACTION_DOWN 就意味着接受所有的事件，拒绝 ACTION_DOWN 则不会收到后续内容。
 如果当前正在处理的事件被上层 View 拦截，会收到一个 ACTION_CANCEL，后续事件不会再传递过来。
+
+//**********
+https://www.cnblogs.com/awkflf11/p/12635429.html
