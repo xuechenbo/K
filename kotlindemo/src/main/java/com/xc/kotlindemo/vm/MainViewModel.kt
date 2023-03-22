@@ -3,10 +3,8 @@ package com.xc.kotlindemo.vm
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.xc.kotlindemo.model.MainModel
-import com.xc.kotlindemo.network.BaseViewModel
-import com.xc.kotlindemo.network.NetworkService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import com.xc.common_base.u.network.BaseViewModel
+import com.xc.common_base.u.network.NetworkService
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

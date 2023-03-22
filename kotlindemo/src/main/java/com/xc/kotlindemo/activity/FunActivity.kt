@@ -1,14 +1,8 @@
 package com.xc.kotlindemo.activity
 
-import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
-import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
-import com.permissionx.guolindev.PermissionX
-import com.xc.kotlindemo.base.BaseActivity
+import com.xc.common_base.u.base.BaseActivity
 import com.xc.kotlindemo.databinding.ActivityFunBinding
 import com.xc.kotlindemo.vm.FunViewModel
 

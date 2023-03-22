@@ -1,4 +1,4 @@
-package com.xc.kotlindemo.base
+package com.xc.common_base.u.base
 
 import android.Manifest
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.permissionx.guolindev.PermissionX
-import com.xc.kotlindemo.network.BaseViewModel
+import com.xc.common_base.u.network.BaseViewModel
 
 abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
 

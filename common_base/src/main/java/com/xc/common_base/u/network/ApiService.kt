@@ -1,5 +1,6 @@
-package com.xc.kotlindemo.network
+package com.xc.common_base.u.network
 
+import com.xc.common_base.u.network.RepoSearchResponse
 import retrofit2.http.*
 
 interface ApiService {

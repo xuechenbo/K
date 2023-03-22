@@ -1,6 +1,5 @@
-package com.xc.kotlindemo.network
+package com.xc.common_base.u.network
 
-import java.security.MessageDigest
 
 class Constant {
     companion object {

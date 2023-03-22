@@ -2,7 +2,7 @@ package com.xc.kotlindemo.activity
 
 import android.os.Bundle
 import android.util.Log
-import com.xc.kotlindemo.base.BaseActivity
+import com.xc.common_base.u.base.BaseActivity
 import com.xc.kotlindemo.databinding.ActivityMainBinding
 import com.xc.kotlindemo.vm.MainViewModel
 

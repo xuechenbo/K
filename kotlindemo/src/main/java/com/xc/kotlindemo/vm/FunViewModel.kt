@@ -1,6 +1,6 @@
 package com.xc.kotlindemo.vm
 
-import com.xc.kotlindemo.network.BaseViewModel
+import com.xc.common_base.u.network.BaseViewModel
 
 class FunViewModel : BaseViewModel() {
 }

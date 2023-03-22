@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -10,12 +11,10 @@ android {
     defaultConfig {
         minSdk rootProject.ext.android.minSdkVersion
         targetSdk rootProject.ext.android.targetSdkVersion
-
+        multiDexEnabled = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         flavorDimensions "versionCode"
-
-
     }
 
     buildTypes {
@@ -56,4 +55,23 @@ dependencies {
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["core_ktx"]
     testImplementation rootProject.ext.dependencies["junit"]
+
+    api rootProject.ext.dependencies["constraintlayout"]
+    api rootProject.ext.dependencies["lifecycle_viewmodel_ktx"]
+    api rootProject.ext.dependencies["lifecycle_livedata_ktx"]
+    api rootProject.ext.dependencies["lifecycle_runtime"]
+
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["permissionx"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["adapter_rxjava2"]
+    api rootProject.ext.dependencies["converter_gson"]
+    api rootProject.ext.dependencies["interceptor"]
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["fastjson"]
+    api rootProject.ext.dependencies["multidex"]
+    //阿里ARouter
+//    api rootProject.ext.dependencies["arouter"]
+//    kapt rootProject.ext.dependencies["arouterCompiler"]
+
 }

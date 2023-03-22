@@ -42,4 +42,6 @@ dependencies {
     if (!Boolean.valueOf(rootProject.ext.isModule)) {
         implementation project(':loginmodel')
     }
+    //Arouter路由
+//    kapt rootProject.ext.dependencies["arouterCompiler"]
 }

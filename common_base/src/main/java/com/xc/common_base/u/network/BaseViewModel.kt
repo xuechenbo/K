@@ -1,4 +1,4 @@
-package com.xc.kotlindemo.network
+package com.xc.common_base.u.network
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
