@@ -17,7 +17,7 @@ kotlin知识  **********    高阶函数,协程,语法糖
 五，三方框架，各种优化
 recyclerView缓存 Glid
 
-六，http，retrofit，Rxjava
+六，okhttp，retrofit，
 
 七，热更新
 

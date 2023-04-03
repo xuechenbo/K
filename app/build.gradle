@@ -16,6 +16,11 @@ android {
         versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -43,5 +48,6 @@ dependencies {
         implementation project(':loginmodel')
     }
     //Arouter路由
-//    kapt rootProject.ext.dependencies["arouterCompiler"]
+    api rootProject.ext.dependencies["arouter"]
+    kapt rootProject.ext.dependencies["arouterCompiler"]
 }
