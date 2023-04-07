@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.xc.common_base.u.base.BaseActivity
 import com.xc.kotlindemo.databinding.ActivityFunBinding
+import com.xc.kotlindemo.model.MainModel
 import com.xc.kotlindemo.vm.FunViewModel
 
 class FunActivity : BaseActivity<FunViewModel>() {
@@ -43,6 +44,12 @@ class FunActivity : BaseActivity<FunViewModel>() {
         getPro("112") {
             binding.btn.text = "okkk"
         }
+
+        MainModel("12", 1, "", action = { it, str ->
+
+        }, model = {
+            ""
+        })
     }
 
     public inline fun IntArray.dddddd(action: (Int) -> Unit): Unit {

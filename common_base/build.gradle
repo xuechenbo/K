@@ -83,4 +83,7 @@ dependencies {
 
     api rootProject.ext.dependencies["coil"]
 
+//    api rootProject.ext.dependencies["hilt"]
+//    kapt rootProject.ext.dependencies["hilt_compiler"]
+
 }

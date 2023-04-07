@@ -22,6 +22,7 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initViewModel()
     }
 
     inline fun getPro(str: String, crossinline logE: () -> Unit) {

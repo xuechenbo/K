@@ -11,6 +11,15 @@ import kotlinx.coroutines.launch
 class MainViewModel : BaseViewModel() {
     private lateinit var model: MainModel
     val logtType: MutableLiveData<String> = MutableLiveData()
+    var count = 1
+    private val mutableStateFlow = MutableStateFlow(count)
+    val stateFlow: StateFlow<Int> = mutableStateFlow
+
+
+    fun SendFlow() {
+        mutableStateFlow.value = count
+        count++
+    }
 
     //使用官方库的 MainScope()获取一个协程作用域用于创建协程
     fun getList() {
@@ -29,22 +38,5 @@ class MainViewModel : BaseViewModel() {
                 loadingLiveData.postValue(false)
             }
         )
-    }
-
-    fun testFlow2() {
-        //code 3
-        val list = listOf(1, 2, 3, 4)
-        val asFlow = list.asFlow()
-        val testFlow = flowOf(65, 66, 67)
-        viewModelScope.launch {
-            testFlow.collect {
-                println("输出：$it")
-                println()
-            }
-
-            asFlow.collect {
-
-            }
-        }
     }
 }
