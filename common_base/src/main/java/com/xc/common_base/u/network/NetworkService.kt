@@ -29,7 +29,7 @@ object NetworkService {
         it.level = level
         mBuilder.addInterceptor(it)
         //随便加的请求头
-        mBuilder.addInterceptor(HeadInterceptor())
+//        mBuilder.addInterceptor(HeadInterceptor())
     }
 
     private val retrofit = Retrofit.Builder()

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.xc.common_base.u.base.BaseActivity
+import com.xc.kotlindemo.LeetCodeJava
 import com.xc.kotlindemo.databinding.ActivityMainBinding
 import com.xc.kotlindemo.vm.MainViewModel
 import kotlinx.coroutines.delay
@@ -26,6 +27,8 @@ class MainActivity : BaseActivity<MainViewModel>() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         obser()
+
+
     }
 
 
@@ -60,7 +63,9 @@ class MainActivity : BaseActivity<MainViewModel>() {
     private fun obser() {
         binding.run {
             btn.setOnClickListener {
-                mViewModel.getList()
+//                mViewModel.getList()
+                val lengthOfLongestSubstring22 = LeetCodeJava.lengthOfLongestSubstring22("pwwkew")
+                Log.e("tag", "$lengthOfLongestSubstring22")
             }
         }
         mViewModel?.run {

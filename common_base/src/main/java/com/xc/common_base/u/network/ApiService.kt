@@ -10,4 +10,13 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("per_page") itemsPerPage: Int
     ): RepoSearchResponse
+
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun Login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): BaseResp<String>
+
+
 }

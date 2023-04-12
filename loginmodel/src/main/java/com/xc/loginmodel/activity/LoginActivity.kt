@@ -23,5 +23,18 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ARouter.getInstance().inject(this)
+        listener()
+    }
+
+    fun listener() {
+        binding.login.setOnClickListener {
+            mViewModel.login(binding.username.text.toString(), binding.password.text.toString())
+        }
+
+        mViewModel.run {
+            errorLiveData.observeForever {
+
+            }
+        }
     }
 }
