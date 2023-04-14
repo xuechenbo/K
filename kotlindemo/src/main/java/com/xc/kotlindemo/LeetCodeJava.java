@@ -2,7 +2,10 @@ package com.xc.kotlindemo;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LeetCodeJava {
@@ -18,6 +21,7 @@ public class LeetCodeJava {
         }
         return new int[0];
     }
+    //
 
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -120,7 +124,7 @@ public class LeetCodeJava {
         return max;
     }
 
-    //取最大长度不重复字符串
+    //取最大长度不重复字符串  滑动窗口
     //abcabcbb
     //pwwkew
     public static int lengthOfLongestSubstring22(String s) {
@@ -146,6 +150,226 @@ public class LeetCodeJava {
             left = 1;
         }
         return max;
+    }
+
+    //数组非递减排序  双指针
+    public int[] sortedSquares(int[] nums) {
+        int[] newNums = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            newNums[i] = nums[i] * nums[i];
+        }
+        Arrays.sort(newNums);
+        return newNums;
+    }
+
+    //[-8,-5,1,2,6,7]   双指针排序  平方 然后排序
+    public int[] sortedSquares1(int[] nums) {
+        int[] newNums = new int[nums.length];
+        int n = nums.length;
+        for (int i = 0, j = n - 1, pos = n - 1; i <= j; ) {
+            if (nums[i] * nums[i] > nums[j] * nums[j]) {
+                newNums[pos] = nums[i] * nums[i];
+                i++;
+            } else {
+                newNums[pos] = nums[j] * nums[j];
+                j--;
+            }
+            pos--;
+        }
+        return newNums;
+    }
+
+    //[1,2,3,4,5,6,7]   k=3
+    //5 6 7 1 2 3 4
+    // 双指针
+    public void rotate(int[] nums, int k) {
+        int[] newNums = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            newNums[(i + k) % nums.length] = nums[i];
+        }
+        Log.e("tag", newNums.toString());
+    }
+
+
+    //nums1 = [1,2], nums2 = [3,4]  [1,2,3,4]  (2+3)/2=2.5
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int num = nums1.length + nums2.length;
+        int[] newArray = new int[num];
+
+        for (int i = 0; i < newArray.length; i++) {
+            if (i < nums1.length) {
+                newArray[i] = nums1[i];
+            } else {
+                newArray[i] = nums2[i - nums1.length];
+            }
+        }
+        Arrays.sort(newArray);
+
+        //3 1 2 0 4 0
+        if (num % 2 == 0) {
+            return (double) (newArray[num / 2] + newArray[num / 2 - 1]) / 2;
+        } else {
+            return newArray[num / 2];
+        }
+    }
+
+    //动态规划  中心扩散法
+    //aba bccb
+    public static String longestPalindrome(String s) {
+        if (s.length() == 1) {
+            return s;
+        }
+        String str = s.substring(0, 1);
+        for (int i = 0; i < s.length(); i++) {
+            String st = getSt(s, i - 1, i + 1);
+            String st1 = getSt(s, i, i + 1);
+            String s1 = st.length() >= st1.length() ? st : st1;
+            str = str.length() > s1.length() ? str : s1;
+        }
+        return str;
+    }
+
+    public static String getSt(String s, int left, int right) {
+        String str = "";
+        while (left >= 0 && right < s.length()) {
+            if (s.charAt(left) == s.charAt(right)) {
+                String substring = s.substring(left, right + 1);
+                str = str.length() < substring.length() ? substring : str;
+                left--;
+                right++;
+            } else {
+                break;
+            }
+        }
+        Log.e("tag++++++++++++", str);
+        return str;
+    }
+
+
+    //双指针 移动0
+    //[0,1,0,3,12] -- 1 3 12 0 0
+    //是0，右指针右移
+    //不是0，交换数据，左右指针都往右移
+    //
+    public void moveZeroes(int[] nums) {
+        int left = 0;
+        int right = 0;
+        int n = nums.length;
+        while (right < n) {
+            if (nums[right] != 0) {
+                swap(nums, left, right);
+                left++;
+            }
+            right++;
+        }
+    }
+
+    public void swap(int[] nums, int left, int right) {
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
+    }
+
+    //两数之和  双循环 辣鸡
+    public int[] twoSum2(int[] numbers, int target) {
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
+                if (numbers[i] + numbers[j] == target) {
+                    return new int[]{i + 1, j + 1};
+                }
+            }
+        }
+        return new int[0];
+    }
+
+    //两数之和  双指针
+    public int[] twoSumS(int[] numbers, int target) {
+        int start = 0;
+        int end = numbers.length - 1;
+        while (start != end) {
+            if (numbers[start] + numbers[end] == target) {
+                return new int[]{start + 1, end + 1};
+            } else if (numbers[start] + numbers[end] > target) {
+                end--;
+            } else {
+                start++;
+            }
+        }
+        return new int[0];
+    }
+
+    //[1,8,6,2,5,4,8,3,7]  ---- 49
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int max = 0;
+        while (left != right) {
+            int nex = Math.min(height[left], height[right]) * (right - left);
+            max = Math.max(max, nex);
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return max;
+    }
+
+
+    // -4 -1 -1 0 1 2
+    public List<List<Integer>> threeSum(int[] nums) {
+        //定义一个结果集
+        List<List<Integer>> res = new ArrayList<>();
+        //数组的长度
+        int len = nums.length;
+        //当前数组的长度为空，或者长度小于3时，直接退出
+        if (nums == null || len < 3) {
+            return res;
+        }
+        //将数组进行排序
+        Arrays.sort(nums);
+        //遍历数组中的每一个元素
+        for (int i = 0; i < len; i++) {
+            //如果遍历的起始元素大于0，就直接退出
+            //原因，此时数组为有序的数组，最小的数都大于0了，三数之和肯定大于0
+            if (nums[i] > 0) {
+                break;
+            }
+            //去重，当起始的值等于前一个元素，那么得到的结果将会和前一次相同
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int l = i + 1;
+            int r = len - 1;
+            //当 l 不等于 r时就继续遍历
+            while (l < r) {
+                //将三数进行相加
+                int sum = nums[i] + nums[l] + nums[r];
+                //如果等于0，将结果对应的索引位置的值加入结果集中
+                if (sum == 0) {
+                    // 将三数的结果集加入到结果集中
+                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    //在将左指针和右指针移动的时候，先对左右指针的值，进行判断
+                    //如果重复，直接跳过。
+                    //去重，因为 i 不变，当此时 l取的数的值与前一个数相同，所以不用在计算，直接跳
+                    while (l < r && nums[l] == nums[l + 1]) {
+                        l++;
+                    }
+                    //去重，因为 i不变，当此时 r 取的数的值与前一个相同，所以不用在计算
+                    while (l < r && nums[r] == nums[r - 1]) {
+                        r--;
+                    }
+                    //将 左指针右移，将右指针左移。
+                    l++;
+                    r--;
+                    //如果结果小于0，将左指针右移
+                } else if (sum < 0) {
+                    l++;
+                    //如果结果大于0，将右指针左移
+                } else if (sum > 0) {
+                    r--;
+                }
+            }
+        }
+        return res;
     }
 }
 

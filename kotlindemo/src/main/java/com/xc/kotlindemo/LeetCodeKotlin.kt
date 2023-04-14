@@ -1,6 +1,6 @@
 package com.xc.kotlindemo
 
-class LeetCode {
+class LeetCodeKotlin {
     //返回指定target在数组的下标  数组升序
 
     fun search(nums: IntArray, target: Int): Int {
