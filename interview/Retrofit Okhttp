@@ -1,0 +1,9 @@
+Retrofit
+Retrofit是基于OkHttp框架来实现请求的，而Retrofit是基于OkHttp框架实现的一套封装，利用动态代理实现了简单的网络请求实现。
+Retrofit巧妙的使用了动态代理在调用接口的方法之前，统一的去解析处理Header和URL等操作
+
+2、简单介绍下retrofit实现原理
+
+首先，通过Builder创建Retrofit对象，在create方法中，通过JDK动态代理的方式，生成实现类，在调用接口方法时，会触发InvocationHandler的invoke方法，
+将接口的空方法转换成ServiceMethid, 然后生成okhttp请求，通过callAdapterFactory找到对应的执行器，比如RxJava2CallAdapterFactory，
+最后通过ConverterFactory将返回数据解析成JavaBena，使用者只需要关心请求参数，内部实现由retrofit封装完成，底层请求还是基于okhttp实现的。

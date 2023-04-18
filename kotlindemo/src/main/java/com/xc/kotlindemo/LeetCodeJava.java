@@ -461,7 +461,7 @@ public class LeetCodeJava {
         Node end = new Node(val);
         end.next = null;
         Node cur = head1;
-        while (cur.next != null){
+        while (cur.next != null) {
             cur = cur.next;
         }
         cur.next = end;
@@ -476,6 +476,7 @@ public class LeetCodeJava {
         this.size = 0;
         this.head = null;
     }
+
     public class ListNode {
         int val;
         ListNode next;
@@ -504,6 +505,47 @@ public class LeetCodeJava {
         }
     }
 
+    //广度优先搜索
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int cur = image[sr][sc];
+        if (cur == color) {
+            return image;
+        }
+        for (int i = 0; i < image.length; i++) {
+            for (int j = 0; j < image[i].length; j++) {
+                if (image[i][j] == cur) {
+
+                }
+            }
+        }
+        return image;
+    }
+
+    //最大岛
+    public int maxAreaOfIsland(int[][] grid) {
+        int ans = 0;
+        for (int i = 0; i != grid.length; ++i) {
+            for (int j = 0; j != grid[0].length; ++j) {
+                ans = Math.max(ans, dfs(grid, i, j));
+            }
+        }
+        return ans;
+    }
+
+    public int dfs(int[][] grid, int x, int y) {
+        if (x < 0 || y < 0 || x == grid.length || y == grid[0].length || grid[x][y] != 1) {
+            return 0;
+        }
+        grid[x][y] = 0;
+        int[] di = {0, 0, 1, -1};
+        int[] dj = {1, -1, 0, 0};
+        int ans = 1;
+        for (int index = 0; index != 4; ++index) {
+            int next_i = x + di[index], next_j = y + dj[index];
+            ans += dfs(grid, next_i, next_j);
+        }
+        return ans;
+    }
 
 }
 

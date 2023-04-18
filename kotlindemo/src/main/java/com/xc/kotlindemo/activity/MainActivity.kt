@@ -40,60 +40,9 @@ class MainActivity : BaseActivity<MainViewModel>() {
 //            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 //        binding.recycler.adapter = MyAdapter()
 
-
-        //
         LeetCodeJava.aaa()
     }
 
-    class Example {
-
-    }
-
-    class Delegate {
-
-    }
-
-
-    class MyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        private val mList: List<String>? = null
-        private val mContext: Context? = null
-        fun MyAdapter(mList: List<String?>, mContext: Context) {
-            //大部分只有数据与上下文
-//            mList = mList
-//            mContext = mContext
-        }
-
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            TODO("Not yet implemented")
-            //主要负责绑定数据
-            //主要负责绑定数据
-//            (holder as ContentViewHolder).tvItem.text = mList!![position]
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            TODO("Not yet implemented")
-//            val view: View = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, viewGroup, false)
-//            return ContentViewHolder(view)
-        }
-
-        override fun getItemCount(): Int {
-            return 5
-        }
-
-        internal class ContentViewHolder(itemView: View) :
-            RecyclerView.ViewHolder(itemView) {
-//            private val tvItem: TextView
-//            private val llLayout: LinearLayout
-
-            init {
-//                tvItem = itemView.findViewById<View>(R.id.tv_item) as TextView
-//                llLayout = itemView.findViewById<View>(R.id.ll_layout) as LinearLayout
-            }
-        }
-    }
-
-    //8+8=16
-    // 2 1个宠物  12-3=9   5
     fun test() {
         lifecycleScope.launch {
             flow {
