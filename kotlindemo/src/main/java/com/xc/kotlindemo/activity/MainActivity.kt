@@ -36,12 +36,13 @@ class MainActivity : BaseActivity<MainViewModel>() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         obser()
-        binding.recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.recycler.adapter = MyAdapter()
+//        binding.recycler.layoutManager =
+//            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+//        binding.recycler.adapter = MyAdapter()
 
 
         //
+        LeetCodeJava.aaa()
     }
 
     class Example {
@@ -91,6 +92,8 @@ class MainActivity : BaseActivity<MainViewModel>() {
         }
     }
 
+    //8+8=16
+    // 2 1个宠物  12-3=9   5
     fun test() {
         lifecycleScope.launch {
             flow {

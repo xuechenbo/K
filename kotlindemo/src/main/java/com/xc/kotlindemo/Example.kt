@@ -95,7 +95,6 @@ fun main() {
 }
 
 //-------------
-//想干的事
 interface Kill {
     fun killPeople()
 }
@@ -114,8 +113,6 @@ fun mainKill() {
     val killer = killer("张三")
     Mine(killer).killPeople()
 }
-
-
 
 //委托属性
 class DelegateProp{
@@ -137,12 +134,6 @@ fun main111(){
 //    testProp.myProp = "1"
 //    val a = testProp.myProp
 }
-
-
-// 55000
-
-
-//139360
 
 
 

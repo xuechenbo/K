@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.http.HEAD;
+
 public class LeetCodeJava {
 
     public int[] twoSum(int[] nums, int target) {
@@ -65,24 +67,6 @@ public class LeetCodeJava {
         }
         //返回链表的头节点
         return prev.next;
-    }
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 
     //取最大长度不重复字符串
@@ -214,7 +198,7 @@ public class LeetCodeJava {
     }
 
     //动态规划  中心扩散法
-    //aba bccb
+    //aba bccb   回文
     public static String longestPalindrome(String s) {
         if (s.length() == 1) {
             return s;
@@ -247,7 +231,10 @@ public class LeetCodeJava {
 
 
     //双指针 移动0
-    //[0,1,0,3,12] -- 1 3 12 0 0
+    //[0,0,1,3,4] -- 1 3 4 0 0
+    // 1 0 0 3 4
+    // 1 3 0 0 4
+    // 1 3 4 0 0
     //是0，右指针右移
     //不是0，交换数据，左右指针都往右移
     //
@@ -371,6 +358,153 @@ public class LeetCodeJava {
         }
         return res;
     }
+
+    //反向字符串
+    // 1 2 3 4
+    public void reverseString(char[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left < right) {
+            char temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public String reverseWords(String s) {
+        char[] chars = s.toCharArray();
+        int i = 0;
+        for (int j = 0; j < chars.length; j++) {
+            if (chars[j] == ' ') {
+                reverse(chars, i, j - 1);
+                i = j + 1;
+            }
+        }
+        reverse(chars, i, chars.length - 1);
+        return String.valueOf(chars);
+    }
+
+    private void reverse(char[] chars, int i, int j) {
+        while (i < j) {
+            char temp = chars[i];
+            chars[i++] = chars[j];
+            chars[j--] = temp;
+        }
+    }
+
+
+    //链表中间值  快慢指针
+    public ListNode middleNode(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast.next != null && slow.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    //head = [1,2,3,4,5], n = 2   [1,2,3,5]
+    // 1  1  1  1  1
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode temp = head;
+        int lent = getLent(head);
+        for (int i = 1; i < 4; i++) {
+            head = head.next;
+        }
+        return temp;
+    }
+
+    private int getLent(ListNode head) {
+        int num = 0;
+        while (head.next != null) {
+            head = head.next;
+            ++num;
+        }
+        return num;
+    }
+
+    //s1 = "ab" s2 = "eidbaooo"
+    public boolean checkInclusion(String s1, String s2) {
+        if (s2.contains(s1)) {
+            return true;
+        }
+        for (int i = 0; i < s1.length(); i++) {
+            char c = s1.charAt(i);
+            for (int j = 0; j < s2.length(); j++) {
+                if (s2.charAt(j) == c) {
+
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void aaa() {
+        int[] target = new int[26];
+        Log.e("TAGGG", target['c' - 'a']++ + "");
+        for (int i = 0; i < target.length; i++) {
+            Log.e("TAGGG", target[i]++ + "");
+        }
+    }
+
+
+    public void addHead(int val) {
+        ListNode cur = new ListNode(val);
+        cur.next = this.head;
+        head = cur;
+    }
+
+    public void addEnd(int val) {
+        Node end = new Node(val);
+        end.next = null;
+        Node cur = head1;
+        while (cur.next != null){
+            cur = cur.next;
+        }
+        cur.next = end;
+    }
+
+
+    int size;//链表长度
+    ListNode head;//头节点
+    Node head1;//头节点
+
+    public LeetCodeJava() {
+        this.size = 0;
+        this.head = null;
+    }
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public class Node {
+        int val;
+        Node next;
+
+        Node(int val) {
+            this.val = val;
+        }
+
+        Node(int val, Node next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+
 }
 
 
