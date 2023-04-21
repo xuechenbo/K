@@ -7,10 +7,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Stack;
 
 import retrofit2.http.HEAD;
+import retrofit2.http.Query;
 
 public class LeetCodeJava {
+
 
     public int[] twoSum(int[] nums, int target) {
         int n = nums.length;
@@ -547,6 +551,187 @@ public class LeetCodeJava {
         return ans;
     }
 
+
+    //这个没做出来
+    public int[][] updateMatrix(int[][] mat) {
+        int[][] newMat = mat;
+        for (int i = 0; i < mat.length; i++) {
+            for (int m = 0; m < mat[i].length; m++) {
+                newMat[i][m] = jl(mat, newMat, i, 0);
+//                newMat[i][m] = jl(mat, newMat, 0, m);
+            }
+        }
+        return newMat;
+    }
+
+    public int jl(int[][] mat, int[][] newMat, int x, int y) {
+        int[] cur = {-1, 1, 0, 0};
+        int max = 0;
+        if (x < 0 || y < 0 || x == mat.length || y == mat[0].length) {
+            return -1;
+        }
+
+        for (int i = 0; i < cur.length; i++) {
+
+        }
+        return max - 1;
+    }
+
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = 0, p2 = 0;
+        int[] sorted = new int[m + n];
+        int cur = 0;
+        while (p1 < m || p2 < n) {
+            if (m == 0) {
+
+            } else if (n == 0) {
+
+            }
+            if (nums1[p1] == nums2[p2]) {
+                sorted[cur] = nums1[p1];
+                cur++;
+                if (++p1 == m) {
+                    p1 = p1 - 1;
+                }
+            } else if (nums1[p1] > nums2[p2]) {
+                sorted[cur] = nums2[p2];
+                cur++;
+                if (++p2 == n) {
+                    p2 = p2 - 1;
+                }
+            } else if (nums1[p1] < nums2[p2]) {
+                sorted[cur] = nums1[p1];
+                cur++;
+                if (++p1 == m) {
+                    p1 = p1 - 1;
+                }
+            }
+        }
+//        for (int i = 0; i != m + n; ++i) {
+//            nums1[i] = sorted[i];
+//        }
+    }
+
+    //合并列表
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if (list1 == null) {
+            return list2;
+        } else if (list2 == null) {
+            return list1;
+        } else if (list1.val < list2.val) {
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
+        } else {
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
+        }
+    }
+
+    public int smallestEvenMultiple(int n) {
+
+        if (n % 2 == 0) {
+            return n;
+        } else {
+            return n * 2;
+        }
+    }
+
+    public ListNode mergeTwoLists1(ListNode list1, ListNode list2) {
+        ListNode cur = new ListNode(-1);
+        ListNode pre = cur;
+        while (list1 != null && list2 != null) {
+            if (list1.val >= list2.val) {
+                pre.next = list2;
+                list2 = list2.next;
+            } else {
+                pre.next = list1;
+                list1 = list1.next;
+            }
+            pre = pre.next;
+        }
+
+        pre.next = list1 == null ? list2 : list1;
+        return cur.next;
+    }
+
+    //1234  4321
+    //newNode = 2
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    //f(n)=f(n-1)+f(n-2)
+    public int climbStairs(int n) {
+        int dp[] = new int[n + 1];
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 2] + dp[i - 1];
+        }
+        return dp[n];
+    }
+
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> integers = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) {
+                    integers.add(1);
+                } else {
+                    integers.add(ret.get(i - 1).get(j - 1) + ret.get(i - 1).get(j));
+                }
+            }
+            ret.add(integers);
+        }
+        return ret;
+    }
+
+    public List<Integer> getRow(int rowIndex) {
+        if (rowIndex == 0) {
+            ArrayList<Integer> integers = new ArrayList<>();
+            integers.add(1);
+            return integers;
+        }
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        for (int i = 0; i < rowIndex + 1; i++) {
+            List<Integer> integers = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) {
+                    integers.add(1);
+                } else {
+                    integers.add(ret.get(i - 1).get(j - 1) + ret.get(i - 1).get(j));
+                }
+            }
+            ret.add(integers);
+        }
+        return ret.get(rowIndex);
+    }
+
+
+    //7 1 5 4 3
+    public int maxProfit(int[] prices) {
+        int max = 0;
+        int min = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] - min > max) {
+                max = prices[i] - min;
+            } else {
+                min = Math.min(prices[i], min);
+            }
+        }
+        return max;
+    }
 }
 
 

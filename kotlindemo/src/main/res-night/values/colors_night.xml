@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200_night">#F60B0B</color>
+    <color name="purple_500_night">#F60B0B</color>
+    <color name="purple_700_night">#F60B0B</color>
+    <color name="teal_200_night">#F60B0B</color>
+    <color name="teal_700_night">#F60B0B</color>
+    <color name="black_night">#F60B0B</color>
+    <color name="white_night">#F60B0B</color>
+</resources>

@@ -39,8 +39,6 @@ class MainActivity : BaseActivity<MainViewModel>() {
 //        binding.recycler.layoutManager =
 //            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 //        binding.recycler.adapter = MyAdapter()
-
-        LeetCodeJava.aaa()
     }
 
     fun test() {
