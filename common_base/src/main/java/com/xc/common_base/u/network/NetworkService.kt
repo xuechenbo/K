@@ -16,6 +16,7 @@ object NetworkService {
         .connectTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)//连接超时时间
         .readTimeout(DEFAULT_READ_TIME_OUT.toLong(), TimeUnit.SECONDS)//读操作超时时间
 
+
     // 日志显示级别
     val level = HttpLoggingInterceptor.Level.BODY
 
@@ -28,9 +29,11 @@ object NetworkService {
     }).also { it ->
         it.level = level
         mBuilder.addInterceptor(it)
+        mBuilder.addInterceptor(TokenInterceptor())
         //随便加的请求头
 //        mBuilder.addInterceptor(HeadInterceptor())
     }
+
 
     private val retrofit = Retrofit.Builder()
         .client(mBuilder.build())

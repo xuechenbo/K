@@ -1,5 +1,7 @@
 package com.xc.kotlindemo
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import com.alibaba.android.arouter.launcher.ARouter
 import com.xc.common_base.u.base.BaseApplication
 import dagger.hilt.android.HiltAndroidApp
@@ -29,6 +31,8 @@ class App : BaseApplication() {
 //            .setSkinStatusBarColorEnable(false)                     // 关闭状态栏换肤，默认打开[可选]
 //            .setSkinWindowBackgroundEnable(false)                   // 关闭windowBackground换肤，默认打开[可选]
             .loadSkin();
+
+//        getLifecycle().addObserver(MyObserver())
     }
 
 }

@@ -8,7 +8,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.SkinAppCompatDelegateImpl;
+import androidx.lifecycle.LifecycleObserver;
+
 import com.xc.kotlindemo.R;
+
 import skin.support.SkinCompatManager;
 
 public class SkinActivity extends AppCompatActivity {
@@ -23,6 +26,8 @@ public class SkinActivity extends AppCompatActivity {
                 SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
             }
         });
+
+        getLifecycle().addObserver(new MyLifecycle1());
     }
 
     @NonNull
@@ -30,4 +35,6 @@ public class SkinActivity extends AppCompatActivity {
     public AppCompatDelegate getDelegate() {
         return SkinAppCompatDelegateImpl.get(this, this);
     }
+
+
 }

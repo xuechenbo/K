@@ -732,6 +732,175 @@ public class LeetCodeJava {
         }
         return max;
     }
+
+    //--------------------------------- 回溯
+    List<List<Integer>> listTotal = new ArrayList<>();
+
+    public List<List<Integer>> combine1(int n, int k) {
+        backtrack(n, k, new ArrayList<Integer>(), 1);
+        return listTotal;
+    }
+
+    //n-2 2
+    private void backtrack(int n, int k, List<Integer> list, int index) {
+        if (list.size() == k) {
+            listTotal.add(new ArrayList<>(list));
+            return;
+        }
+        //i =  2
+        for (int i = index; i <= n; i++) {
+            // 经典回溯模板
+            list.add(i);
+            // 以 i + 1进行递归
+            backtrack(n, k, list, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+
+
+    //全排列 列表用回溯   全排列个数用 动态规划
+    //[0,1]
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        backtrack(res, new ArrayList<>(), nums);
+        return res;
+    }
+
+    //[0,1]
+    public void backtrack(List<List<Integer>> res, List<Integer> list, int[] nums) {
+        if (list.size() == nums.length) {
+            res.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int num : nums) {
+            if (!list.contains(num)) {
+                list.add(num);
+                backtrack1(res, list, nums);
+//                backtrack(res, list, nums);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+
+    //list=[0]
+    public void backtrack1(List<List<Integer>> res, List<Integer> list, int[] nums) {
+        if (list.size() == nums.length) {
+            res.add(new ArrayList<Integer>(list));
+            return;
+        }
+        //num=[0,1]
+        for (int num : nums) {
+            if (!list.contains(num)) {
+                list.add(num);
+                backtrack2(res, list, nums);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+
+    //list=[0,1]
+    public void backtrack2(List<List<Integer>> res, List<Integer> list, int[] nums) {
+        if (list.size() == nums.length) {
+            res.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int num : nums) {
+            if (!list.contains(num)) {
+                list.add(num);
+                backtrack(res, list, nums);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+
+    public List<String> letterCasePermutation(String s) {
+        char[] cs = s.toCharArray();
+        List<String> ans = new ArrayList<>();
+        bt(cs, ans, 0);
+
+        return ans;
+    }
+
+    //"a1b2"
+    //aA1bB2
+    private void bt(char[] cs, List<String> ans, int index) {
+        ans.add(new String(cs));
+        for (int i = index; i < cs.length; i++) {
+            if (cs[i] >= 'A') {
+                cs[i] ^= 32;
+                bt(cs, ans, i + 1);
+                cs[i] ^= 32;
+            }
+        }
+    }
+
+    //动态规划
+    public int rob(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        // 子问题：
+        // f(k) = 偷 [0..k) 房间中的最大金额
+        // f(0) = 0
+        // f(1) = nums[0]
+        // f(k) = max{ rob(k-1), nums[k-1] + rob(k-2) }
+        int N = nums.length;
+        int[] dp = new int[N + 1];
+        dp[0] = 0;
+        dp[1] = nums[0];
+        for (int k = 2; k <= N; k++) {
+            dp[k] = Math.max(dp[k - 1], nums[k - 1] + dp[k - 2]);
+        }
+        return dp[N];
+    }
+
+
+    //16
+    public boolean isPowerOfTwo(int n) {
+        return isF(n);
+    }
+
+    boolean isF(float n) {
+        if (n < 1) return false;
+        if (n == 1) return true;
+        if (n % 2 == 1 && n != 1) return false;
+        return isF(n / 2);
+    }
+
+    //[3,2,2,3]    3
+    // 4 4 3 2     3
+    public int removeElement(int[] nums, int val) {
+        int num = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                //******
+                nums[num] = nums[i];
+                num++;
+            }
+        }
+        return num;
+    }
+
+    //[1,1,2] [1,2,_]
+    //[1,2,2,4,6,6] [1,2,_]
+    //
+    //
+    //
+    public int removeDuplicates(int[] nums) {
+        int i = 0, j = 1;
+        while (j < nums.length) {
+            if (nums[i] == nums[j]) {
+                j++;
+            } else {
+                nums[++i] = nums[j];
+            }
+        }
+        return i + 1;
+    }
+
+    public int removeDuplicates2(int[] nums) {
+        return 0;
+    }
 }
 
 

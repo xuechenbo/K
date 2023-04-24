@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.xc.common_base.u.network.BaseResp;
+import com.xc.common_base.u.network.NetworkService;
 import com.xc.kotlindemo.R;
 
 import java.io.File;
@@ -16,7 +18,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -24,13 +25,36 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import retrofit2.Callback;
 
 public class OkhttpActvity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fun);
-        initOkhttp();
+//        initOkhttp();
+        get();
+
+        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                get();
+            }
+        });
+    }
+
+    private void get() {
+        NetworkService.INSTANCE.getApiService().queryProgressByStaffId("15694804272", "123456").enqueue(new Callback<BaseResp<String>>() {
+            @Override
+            public void onResponse(retrofit2.Call<BaseResp<String>> call, retrofit2.Response<BaseResp<String>> response) {
+                Log.e("TTTTTT", response.body().getErrorMsg());
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<BaseResp<String>> call, Throwable t) {
+                Log.e("TTTTTT", "response.body().toString()");
+            }
+        });
     }
 
     private void initOkhttp() {
