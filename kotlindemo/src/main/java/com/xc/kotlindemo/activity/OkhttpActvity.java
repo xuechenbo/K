@@ -41,6 +41,24 @@ public class OkhttpActvity extends AppCompatActivity {
                 get();
             }
         });
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        rotate1(arr, 3);
+    }
+
+    public void rotate1(int[] nums, int k) {
+        int k1 = k;
+        int[] newNums = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (k1 != 0) {
+                newNums[i] = nums[nums.length - k + i];
+                --k1;
+            } else {
+                newNums[i] = nums[i - k];
+            }
+        }
+        for (int i = 0; i < newNums.length; i++) {
+            Log.e("TAG", newNums[i] + "");
+        }
     }
 
     private void get() {
@@ -56,6 +74,9 @@ public class OkhttpActvity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     private void initOkhttp() {
         //设置超时时间

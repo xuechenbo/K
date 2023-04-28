@@ -16,7 +16,6 @@ object NetworkService {
         .connectTimeout(DEFAULT_TIME_OUT.toLong(), TimeUnit.SECONDS)//连接超时时间
         .readTimeout(DEFAULT_READ_TIME_OUT.toLong(), TimeUnit.SECONDS)//读操作超时时间
 
-
     // 日志显示级别
     val level = HttpLoggingInterceptor.Level.BODY
 

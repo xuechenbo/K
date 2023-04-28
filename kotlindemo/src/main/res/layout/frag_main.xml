@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    <com.androidkun.xtablayout.XTabLayout-->
+    <!--        android:id="@+id/xtab"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/vp2"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:xTabIndicatorColor="#32A1FF"-->
+    <!--        app:xTabIndicatorHeight="4dp"-->
+    <!--        app:xTabIndicatorWidth="20dp"-->
+    <!--        app:xTabMode="scrollable"-->
+    <!--        app:xTabSelectedTextColor="#000"-->
+    <!--        app:xTabSelectedTextSize="17dp"-->
+    <!--        app:xTabTextColor="#202020"-->
+    <!--        app:xTabTextSize="14dp"-->
+    <!--        tl:xTabIndicatorRoundX="4dp"-->
+    <!--        tl:xTabIndicatorRoundY="4dp" />-->
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/xtab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/vp2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="center"
+        app:tabMode="auto"
+        app:tabTextColor="@color/black" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xtab" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -899,7 +899,52 @@ public class LeetCodeJava {
     }
 
     public int removeDuplicates2(int[] nums) {
-        return 0;
+        int n = nums.length;
+        if (n <= 2) {
+            return n;
+        }
+        int slow = 2, fast = 2;
+        while (fast < n) {
+            if (nums[slow - 2] != nums[fast]) {
+                nums[slow] = nums[fast];
+                ++slow;
+            }
+            ++fast;
+        }
+        return slow;
+    }
+
+    public int majorityElement(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                map.put(nums[i] ,map.get(nums[i]) + 1);
+            } else {
+                map.put(nums[i], 1);
+            }
+        }
+        Map.Entry<Integer, Integer> majorityEntry = null;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (majorityEntry == null || entry.getValue() > majorityEntry.getValue()) {
+                majorityEntry = entry;
+            }
+        }
+        return majorityEntry.getKey();
+    }
+
+
+    
+    public void rotate1(int[] nums, int k) {
+        int k1 = k;
+        int[] newNums = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if(k1 != 0){
+                newNums[i]=nums[nums.length-k+i];
+                --k1;
+            }else{
+                newNums[i]=nums[i-k];
+            }
+        }
     }
 }
 
