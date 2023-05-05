@@ -918,7 +918,7 @@ public class LeetCodeJava {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(nums[i])) {
-                map.put(nums[i] ,map.get(nums[i]) + 1);
+                map.put(nums[i], map.get(nums[i]) + 1);
             } else {
                 map.put(nums[i], 1);
             }
@@ -932,20 +932,26 @@ public class LeetCodeJava {
         return majorityEntry.getKey();
     }
 
-
-    
     public void rotate1(int[] nums, int k) {
         int k1 = k;
         int[] newNums = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
-            if(k1 != 0){
-                newNums[i]=nums[nums.length-k+i];
+            if (k1 != 0) {
+                newNums[i] = nums[nums.length - k + i];
                 --k1;
-            }else{
-                newNums[i]=nums[i-k];
+            } else {
+                newNums[i] = nums[i - k];
             }
         }
     }
+
+    public int[] productExceptSelf(int[] nums) {
+        int[] answer = new int[nums.length];
+
+        return answer;
+    }
+
+
 }
 
 

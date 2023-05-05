@@ -6,7 +6,11 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <queries>
+        <!--如果想要与其他的应用进行AIDL通信的话，需要在这里注册包名的信息-->
+        <!--谷歌的文档说明 https://developer.android.google.cn/guide/topics/manifest/queries-element?hl=en-->
+        <package android:name="com.xc.testclient" />
+    </queries>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -17,9 +21,9 @@
         android:theme="@style/Theme.KotlinProject">
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true">
-        </activity>
-        <activity android:name=".activity.SkinActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.SkinActivity"
             android:exported="true">
 
         </activity>
@@ -28,8 +32,7 @@
             android:exported="true"></activity>
         <activity
             android:name=".activity.OkhttpActvity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.CoilActivity"
             android:exported="true">
@@ -41,7 +44,8 @@
 
         </activity>
 
-        <activity android:name=".MainIActivity"
+        <activity
+            android:name=".MainIActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,6 +53,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".aidlservice.KtvService"
+            android:exported="true">
+
+        </service>
     </application>
 
 </manifest>

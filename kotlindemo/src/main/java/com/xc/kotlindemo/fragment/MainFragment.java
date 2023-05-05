@@ -1,6 +1,5 @@
 package com.xc.kotlindemo.fragment;
 
-import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +16,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.androidkun.xtablayout.XTabLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.xc.kotlindemo.R;
@@ -25,6 +23,7 @@ import com.xc.kotlindemo.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class MainFragment extends Fragment {
 
@@ -72,16 +71,22 @@ public class MainFragment extends Fragment {
                 int tabCount = xtab.getTabCount();
                 for (int i = 0; i < tabCount; i++) {
                     TabLayout.Tab tab = xtab.getTabAt(i);
-                    TextView tabView = (TextView) tab.getCustomView();
-
-                    Log.e("TAG-----", (tabView == null) + "");
-//                    if (tab.getPosition() == position) {
-//                        tabView.setTextSize(25f);
-//                        tabView.setTypeface(Typeface.DEFAULT_BOLD);
-//                    } else {
-//                        tabView.setTextSize(20f);
-//                        tabView.setTypeface(Typeface.DEFAULT);
-//                    }
+                    String tabStr = Objects.requireNonNull(tab.getText()).toString();
+                    assert tab != null;
+                    Log.e("TAG-----", "onPageSelected----------------");
+                    if (tab.getCustomView() == null || !(tab.getCustomView() instanceof TextView)) {
+                        TextView tv = new TextView(xtab.getContext());
+                        //使用默认TabItem样式时，需要添加LayoutParams，否则会出现Tab文字不居中问题
+                        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(-2, -2);
+                        tv.setLayoutParams(params);
+                        tv.setText(tabStr);
+                        tv.setTextSize(tab.isSelected() ? 20f : 15f);
+                        Log.e("TAG-----", "tab.isSelected()----------------" + tab.isSelected());
+                        tab.setCustomView(tv);
+                    } else {
+                        TextView customView = (TextView) tab.getCustomView();
+                        customView.setTextSize(tab.isSelected() ? 20f : 15f);
+                    }
                 }
             }
         });
