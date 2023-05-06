@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".aidlservice.KtvService"
+        <service android:name=".aidlservice.aidl.KtvService"
             android:exported="true">
 
         </service>

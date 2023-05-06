@@ -7,11 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.xc.kotlindemo.IConrtollerStatusListener;
 import com.xc.kotlindemo.IKtvController;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     if (ktvController == null) {
                         Log.e("Play", "ktvController==null");
                     } else {
-                        ktvController.setPause("hi ~ play");
+                        ktvController.setPlay("hi ~ play");
                     }
 
                 } catch (RemoteException e) {
@@ -64,17 +68,47 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction("com.xc.kotlindemo.aidlservice.KtvService");
         intent.setComponent(new ComponentName("com.xc.kotlindemo", "com.xc.kotlindemo.aidlservice.KtvService"));
-        boolean b = bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-        Log.e("绑定----", b + "");
-        Log.e("Play", "--------------------");
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
-            Log.e("client", "onServiceConnected-------------");
+
             try {
                 ktvController = IKtvController.Stub.asInterface(service);
+                ktvController.setOnControllerStatusListener(new IConrtollerStatusListener.Stub() {
+                    @Override
+                    public void onPauseSuccess() throws RemoteException {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            Toast.makeText(MainActivity.this, "onPauseSuccess", Toast.LENGTH_SHORT).show();
+                        });
+
+                    }
+
+                    @Override
+                    public void onPauseFailed(int errorCode) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            Toast.makeText(MainActivity.this, "onPauseFailed" + errorCode, Toast.LENGTH_SHORT).show();
+                        });
+                    }
+
+                    @Override
+                    public void onPlaySuccess() {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            Toast.makeText(MainActivity.this, "onPlaySuccess", Toast.LENGTH_SHORT).show();
+                        });
+
+                    }
+
+                    @Override
+                    public void onPlayFailed(int errorCode) throws RemoteException {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            Toast.makeText(MainActivity.this, "onPlayFailed" + errorCode, Toast.LENGTH_SHORT).show();
+                        });
+
+                    }
+                });
             } catch (Exception e) {
 
             }
